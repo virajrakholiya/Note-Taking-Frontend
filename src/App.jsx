@@ -19,7 +19,7 @@ function App() {
 
   // Show All Notes
   const fetchNotes = async () => {
-    const res = await axios.get("http://localhost:8080/notes");
+    const res = await axios.get("http://note-taking-backend-dg2l.onrender.com/notes");
     console.log(res);
     setNotes(res.data.notes);
   };
@@ -43,7 +43,7 @@ function App() {
 
   const submithandler = async (e) => {
     e.preventDefault();
-    const send = await axios.post("http://localhost:8080/notes", value);
+    const send = await axios.post("http://note-taking-backend-dg2l.onrender.com/notes", value);
     console.log(send);
     setNotes((prevNotes) => [...prevNotes, send.data.note]);
     setValue({
@@ -53,7 +53,7 @@ function App() {
   };
 
   const deleteHandler = async (_id) => {
-    const del = await axios.delete(`http://localhost:8080/notes/${_id}`);
+    const del = await axios.delete(`http://note-taking-backend-dg2l.onrender.com/notes/${_id}`);
     console.log("Delete response:", del);
 
     const newList = notes.filter((note) => note._id !== _id);
@@ -73,7 +73,7 @@ function App() {
     e.preventDefault();
     const { title, body } = updateValue;
     const res = await axios.put(
-      `http://localhost:8080/notes/${updateValue.id}`,
+      `http://note-taking-backend-dg2l.onrender.com/notes/${updateValue.id}`,
       { title, body }
     );
     const UpdatedNotes = [...notes];
